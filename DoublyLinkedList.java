@@ -116,25 +116,27 @@ public class DoublyLinkedList<E> {
 
     public void group(){
 
-        Node walk = header.getNext(); 
+        if(!isEmpty()){
+            Node walk = header.getNext(); 
 
-        while (walk.getNext() != trailer){
+            while (walk.getNext() != trailer){
 
-            if (walk.getElement() == null){
-                Node thisNode = walk; 
-                walk = walk.getNext(); //lets 'walk' shift to the next node
+                if (walk.getElement() == null){
+                    Node thisNode = walk; 
+                    walk = walk.getNext(); //lets 'walk' shift to the next node
 
-                walk.setPrev(thisNode.getPrev()); //set downstream to link back to node before null 
-                thisNode.getPrev().setNext(walk); //set upstream to link to node after 
+                    walk.setPrev(thisNode.getPrev()); //set downstream to link back to node before null 
+                    thisNode.getPrev().setNext(walk); //set upstream to link to node after 
 
-                Node firstN = header.getNext();  
-                firstN.setPrev(thisNode); //now shifts thisNode to first element
-                thisNode.setNext(firstN); //now sets thisNode to point to the ex-first element
+                    Node firstN = header.getNext();  
+                    firstN.setPrev(thisNode); //now shifts thisNode to first element
+                    thisNode.setNext(firstN); //now sets thisNode to point to the ex-first element
 
-                this.header.setNext(thisNode); //header should pt to thisNode
-                thisNode.setPrev(header); //thisNode should pt before to header
-            } else {
-                walk = walk.getNext();
+                    this.header.setNext(thisNode); //header should pt to thisNode
+                    thisNode.setPrev(header); //thisNode should pt before to header
+                } else {
+                    walk = walk.getNext();
+                }
             }
         }
 
