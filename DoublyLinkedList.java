@@ -127,11 +127,12 @@ public class DoublyLinkedList<E> {
                 walk.setPrev(thisNode.getPrev()); //set downstream to link back to node before null 
                 thisNode.getPrev().setNext(walk); //set upstream to link to node after 
 
-                this.header.setPrev(thisNode); //now shifts thisNode before header
-                thisNode.setNext(this.header); //connects thisNode to the header
-                thisNode.setPrev(null); //sets prev to header
+                Node firstN = header.getNext();  
+                firstN.setPrev(thisNode); //now shifts thisNode to first element
+                thisNode.setNext(firstN); //now sets thisNode to point to the ex-first element
 
-                this.header = thisNode; //updates header to this node 
+                this.header.setNext(thisNode); //header should pt to thisNode
+                thisNode.setPrev(header); //thisNode should pt before to header
             } else {
                 walk = walk.getNext();
             }
