@@ -117,9 +117,10 @@ public class DoublyLinkedList<E> {
     public void group(){
 
         if(!isEmpty()){
+
             Node walk = header.getNext(); 
 
-            while (walk.getNext() != trailer){
+            while (walk != trailer){
 
                 if (walk.getElement() == null){
                     Node thisNode = walk; 
